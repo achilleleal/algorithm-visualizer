@@ -8,7 +8,7 @@
 }
 
 #visualizer {
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -16,6 +16,14 @@
 }
 
 .bar {
-  border: 1px solid lightseagreen;
-  background-color: lightblue;
+  background-color: lightseagreen;
+  flex: 1;
+}
+
+.checking {
+  background-color: red;
+}
+
+.sorted {
+  background-color: mediumspringgreen;
 }
