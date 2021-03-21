@@ -1,20 +1,24 @@
 import './style.css'
 
-import selectionSort from './src/selectionSort'
+import SelectionSort from './src/selectionSort'
 
 const view = document.getElementById("visualizer");
-let currentArray, viewItems;
+const selectSortBtn = document.getElementById("selectionSortBtn");
+const viewItems = view.children;
+let currentArray;
+
+const SelectSort = new SelectionSort(viewItems)
 
 document.getElementById("arrGenBtn").addEventListener('click', () => currentArray = genRandArr())
 
-document.getElementById("selectionSortBtn").addEventListener('click', () => selectionSort(currentArray, viewItems))
+selectSortBtn.addEventListener('click', () => SelectSort.run(currentArray))
 
 function genRandArr() {
 
   view.innerHTML = '';
 
   const array = [];
-  const arrLen = 750;
+  const arrLen = 500;
 
   for (let i = 0; i < arrLen; i++) {
     array.push(Math.random() * 500);
@@ -28,6 +32,5 @@ function genRandArr() {
     view.appendChild(bar)
   })
 
-  viewItems = view.children
   return array
 }
