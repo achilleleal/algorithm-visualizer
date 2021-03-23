@@ -6,9 +6,10 @@ export default class BubbleSort extends Algorithm {
     }
 
     run = async (arr) => {
-        const { toggleCheck, viewItems, delay } = this;
+        const { toggleCheck, setDone, viewItems, delay } = this;
 
-        let didChange = true;
+        let didChange = true,
+            iOfDone = arr.length-1;
 
         while (didChange) {
             didChange = false
@@ -22,7 +23,16 @@ export default class BubbleSort extends Algorithm {
                     toggleCheck(i)
                 }
             }
+            setDone(iOfDone)
+            iOfDone--
         }
+
+        while(iOfDone > -1) {
+            setDone(iOfDone)
+            iOfDone--
+            await delay(1)
+        }
+
         console.log(arr)
     }
 }

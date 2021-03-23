@@ -25,7 +25,7 @@ function genRandArr() {
   const arrLen = 250;
 
   for (let i = 0; i < arrLen; i++) {
-    array.push(Math.random() * 500);
+    array.push(Math.round(Math.random() * 500));
   }
 
   array.forEach((i) => {
