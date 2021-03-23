@@ -5,25 +5,28 @@ export default class SelectionSort extends Algorithm {
     }
 
     run = async (arr) => {
-        const { toggleCheck, setDone, viewItems } = this;
+        const { toggleCheck, setDone, viewItems, toggleBest } = this;
         const len = arr.length;
 
         for (let i = 0; i < len; i++) {
             toggleCheck(i)
-            let min = 10000;
-            let indexOfMin;
+            toggleBest(0)
+            let min = 1000;
+            let indexOfMin = 0;
             for (let j = i; j < len; j++) {
+                toggleCheck(j)
+                await this.delay(1)
                 if (arr[j] < min) {
-                    toggleCheck(indexOfMin || 0)
+                    toggleBest(indexOfMin)
                     min = arr[j];
                     indexOfMin = j;
-                    toggleCheck(indexOfMin || 0)
+                    toggleBest(indexOfMin)
                 }
+                toggleCheck(j)
             }
             [arr[i], arr[indexOfMin]] = [arr[indexOfMin], arr[i]];
             [viewItems[i].style.height, viewItems[indexOfMin].style.height] = [viewItems[indexOfMin].style.height, viewItems[i].style.height];
-            await this.delay(10);
-            toggleCheck(indexOfMin)
+            toggleBest(indexOfMin)
             setDone(i)
         }
     }
