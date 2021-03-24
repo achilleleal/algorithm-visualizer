@@ -10,4 +10,6 @@ export default class Algorithm {
     toggleBest = i => this.viewItems[i].classList.toggle('best')
     
     setDone = i => this.viewItems[i].classList.add('sorted');
+
+    run = () => console.log("The run function for this algorithm hasn't been defined");
 }

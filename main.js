@@ -8,13 +8,10 @@ const selectSortBtn = document.getElementById("selectionSortBtn"),
       bubbleSortBtn = document.getElementById("bubbleSortBtn")
 let currentArray, isRunning;
 
-const SelectSrt = new SelectionSort(),
-      BubbleSrt = new BubbleSort()
-
 document.getElementById("arrGenBtn").addEventListener('click', displayArr)
 
-selectSortBtn.addEventListener('click', () => SelectSrt.run(currentArray))
-bubbleSortBtn.addEventListener('click', () => BubbleSrt.run(currentArray))
+selectSortBtn.addEventListener('click', () => SelectionSort.run(currentArray))
+bubbleSortBtn.addEventListener('click', () => BubbleSort.run(currentArray))
 
 async function displayArr() {
   view.innerHTML = '';
