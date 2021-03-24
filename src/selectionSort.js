@@ -13,7 +13,7 @@ SelectionSort.run = async (arr) => {
         let indexOfMin = 0;
         for (let j = i; j < len; j++) {
             toggleCheck(j)
-            await delay(1)
+            await delay()
             if (arr[j] < min) {
                 toggleBest(indexOfMin)
                 min = arr[j];

@@ -4,37 +4,56 @@ import SelectionSort from './src/selectionSort'
 import BubbleSort from './src/bubbleSort'
 
 const view = document.getElementById("visualizer");
-const selectSortBtn = document.getElementById("selectionSortBtn"),
-      bubbleSortBtn = document.getElementById("bubbleSortBtn")
-let currentArray, isRunning;
+const arrGenBtn = document.getElementById("arrGenBtn");
+const algorithmBtns = Array.from(document.getElementById("algorithmBtns").children)
 
-document.getElementById("arrGenBtn").addEventListener('click', displayArr)
+const algList = [
+  SelectionSort, 
+  BubbleSort,
+]
 
-selectSortBtn.addEventListener('click', () => SelectionSort.run(currentArray))
-bubbleSortBtn.addEventListener('click', () => BubbleSort.run(currentArray))
+let currentArray;
+
+// Functions
+
+const btnsSetDisabled = bool => algorithmBtns.forEach(btn => btn.disabled = bool)
+
+function run(algorithm) {
+  btnsSetDisabled(true)
+  algorithm.run(currentArray);
+}
 
 async function displayArr() {
-  view.innerHTML = '';
-  await new Promise(res => setTimeout(res, 1));
-  currentArray = genRandArr()
+  btnsSetDisabled(false)
+  // Stop briefly to let current algorithm stop due to error (it was the easiest way)
+  await new Promise(res => setTimeout(res, 5));
+  genRandArr()
 }
 
 function genRandArr() {
 
-  const array = [];
+  view.innerHTML = '';
+
+  currentArray = [];
   const arrLen = 250;
 
   for (let i = 0; i < arrLen; i++) {
-    array.push(Math.round(Math.random() * 500));
+    currentArray.push(Math.round(Math.random() * 500));
   }
 
-  array.forEach((i) => {
+  currentArray.forEach((i) => {
     const bar = document.createElement('div');
     bar.classList.add('bar');
     bar.style.height = `${i}px`;
 
     view.appendChild(bar)
   })
-
-  return array
 }
+
+// Events
+
+arrGenBtn.addEventListener('click', displayArr)
+
+algorithmBtns.forEach((btn, i) => {
+  btn.addEventListener('click', () => run(algList[i]))
+})

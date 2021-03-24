@@ -3,7 +3,12 @@ export default class Algorithm {
         this.viewItems = document.getElementById("visualizer").children
     }
 
-    delay = ms => new Promise(res => setTimeout(res, ms));
+    /**
+     * Stops function execution for Nº of ms to let the page update the DOM
+     * @param ms Miliseconds to stop
+     * @default ms = 1
+     */
+    delay = (ms = 1) => new Promise(res => setTimeout(res, ms));
     
     toggleCheck = i => this.viewItems[i].classList.toggle('checking');
 
