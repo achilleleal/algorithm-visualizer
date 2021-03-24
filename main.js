@@ -5,18 +5,18 @@ import BubbleSort from './src/bubbleSort'
 
 const view = document.getElementById("visualizer");
 const arrGenBtn = document.getElementById("arrGenBtn");
-const algorithmBtns = Array.from(document.getElementById("algorithmBtns").children)
+const algorithmBtns = document.getElementById("algorithmBtns");
 
 const algList = [
-  SelectionSort, 
-  BubbleSort,
-]
+  ["Selection Sort", SelectionSort], 
+  ["Bubble Sort", BubbleSort],
+];
 
 let currentArray;
 
 // Functions
 
-const btnsSetDisabled = bool => algorithmBtns.forEach(btn => btn.disabled = bool)
+const btnsSetDisabled = bool => Array.from(algorithmBtns.children).forEach(btn => btn.disabled = bool)
 
 function run(algorithm) {
   btnsSetDisabled(true)
@@ -25,14 +25,13 @@ function run(algorithm) {
 
 async function displayArr() {
   btnsSetDisabled(false)
+  view.innerHTML = '';
   // Stop briefly to let current algorithm stop due to error (it was the easiest way)
-  await new Promise(res => setTimeout(res, 5));
+  await new Promise(res => setTimeout(res, 1));
   genRandArr()
 }
 
 function genRandArr() {
-
-  view.innerHTML = '';
 
   currentArray = [];
   const arrLen = 250;
@@ -54,6 +53,11 @@ function genRandArr() {
 
 arrGenBtn.addEventListener('click', displayArr)
 
-algorithmBtns.forEach((btn, i) => {
-  btn.addEventListener('click', () => run(algList[i]))
+algList.forEach(arr => {
+  const [name, alg] = arr; 
+  const btn = document.createElement('button');
+  btn.innerHTML = name
+  btn.addEventListener('click', () => run(alg))
+
+  algorithmBtns.appendChild(btn)
 })

@@ -3,6 +3,8 @@ import Algorithm from './algorithm'
 const BubbleSort = new Algorithm()
 
 BubbleSort.run = async (arr) => {
+    try {
+
     const { toggleCheck, setDone, viewItems, delay } = BubbleSort;
 
     let didChange = true,
@@ -29,6 +31,8 @@ BubbleSort.run = async (arr) => {
         iOfDone--
         await delay()
     }
+
+    } catch {}
 }
 
 export default BubbleSort

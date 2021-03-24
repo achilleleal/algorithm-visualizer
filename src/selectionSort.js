@@ -3,6 +3,8 @@ import Algorithm from './algorithm'
 const SelectionSort = new Algorithm()
 
 SelectionSort.run = async (arr) => {
+    try {
+
     const { toggleCheck, setDone, viewItems, toggleBest, delay } = SelectionSort;
     const len = arr.length;
 
@@ -27,6 +29,8 @@ SelectionSort.run = async (arr) => {
         toggleBest(indexOfMin)
         setDone(i)
     }
+
+    } catch {}
 }
 
 export default SelectionSort
