@@ -1,7 +1,7 @@
 import Algorithm from './algorithm'
 export default class SelectionSort extends Algorithm {
-    constructor(viewItems) {
-        super(viewItems)
+    constructor() {
+        super()
     }
 
     run = async (arr) => {

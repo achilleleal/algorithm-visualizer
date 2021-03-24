@@ -6,20 +6,23 @@ import BubbleSort from './src/bubbleSort'
 const view = document.getElementById("visualizer");
 const selectSortBtn = document.getElementById("selectionSortBtn"),
       bubbleSortBtn = document.getElementById("bubbleSortBtn")
-const viewItems = view.children;
 let currentArray, isRunning;
 
-const SelectSrt = new SelectionSort(viewItems),
-      BubbleSrt = new BubbleSort(viewItems)
+const SelectSrt = new SelectionSort(),
+      BubbleSrt = new BubbleSort()
 
-document.getElementById("arrGenBtn").addEventListener('click', () => currentArray = genRandArr())
+document.getElementById("arrGenBtn").addEventListener('click', displayArr)
 
 selectSortBtn.addEventListener('click', () => SelectSrt.run(currentArray))
 bubbleSortBtn.addEventListener('click', () => BubbleSrt.run(currentArray))
 
-function genRandArr() {
-
+async function displayArr() {
   view.innerHTML = '';
+  await new Promise(res => setTimeout(res, 1));
+  currentArray = genRandArr()
+}
+
+function genRandArr() {
 
   const array = [];
   const arrLen = 250;

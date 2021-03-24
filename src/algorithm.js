@@ -1,7 +1,6 @@
 export default class Algorithm {
-    constructor(viewItems) {
-        this.viewItems = viewItems
-        this.isRunning = false
+    constructor() {
+        this.viewItems = document.getElementById("visualizer").children
     }
 
     delay = ms => new Promise(res => setTimeout(res, ms));

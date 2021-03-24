@@ -13,7 +13,7 @@ export default class BubbleSort extends Algorithm {
 
         while (didChange) {
             didChange = false
-            for (let i = 0; i < arr.length; i++) {
+            for (let i = 0; i < iOfDone; i++) {
                 if (arr[i+1] < arr[i]) {
                     toggleCheck(i)
                     didChange = true;
@@ -32,7 +32,5 @@ export default class BubbleSort extends Algorithm {
             iOfDone--
             await delay(1)
         }
-
-        console.log(arr)
     }
 }
